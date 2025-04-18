@@ -48,9 +48,9 @@ Auth Flow Summary:
 ## Step-by-Step Process
 
 1. Generated SSH key on macOS:
-   ```bash
+```bash
    ssh-keygen -t ed25519 -C "carlos@mac"
-
+```
         •	Saved in default location: ~/.ssh/id_ed25519
 	•	Public key: ~/.ssh/id_ed25519.pub
 
