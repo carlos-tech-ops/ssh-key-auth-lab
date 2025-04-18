@@ -51,7 +51,7 @@ Auth Flow Summary:
 ```bash
    ssh-keygen -t ed25519 -C "carlos@mac"
 ```
-        •	Saved in default location: ~/.ssh/id_ed25519
+        •	Saved in default location: ```bash ~/.ssh/id_ed25519```
 	•	Public key: ~/.ssh/id_ed25519.pub
 
 2. Copy Public Key to Fedora (Manually)
