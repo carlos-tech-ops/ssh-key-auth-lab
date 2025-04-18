@@ -49,78 +49,97 @@ Auth Flow Summary:
 
 1. Generated SSH key on macOS:
 ```bash
-   ssh-keygen -t ed25519 -C "carlos@mac"
+ssh-keygen -t ed25519 -C "carlos@mac"
 ```
 Saved in default location: 
-```bash ~/.ssh/id_ed25519
+```bash
+~/.ssh/id_ed25519
 ```
 Public key: 
-```bash~/.ssh/id_ed25519.pub
+```bash
+~/.ssh/id_ed25519.pub
 ```
 
 2. Copy Public Key to Fedora (Manually)
 Logged into Fedora via local keyboard.
 Created file:
-```bash nano ~/.ssh/authorized_keys
+```bash
+nano ~/.ssh/authorized_keys
 ```
 Pasted contents of id_ed25519.pub
 Set permissions:
-```bash chmod 700 ~/.ssh
+```bash
+chmod 700 ~/.ssh
 ```
-```bash chmod 600 ~/.ssh/authorized_keys
+```bash
+chmod 600 ~/.ssh/authorized_keys
 ```
 
 4. Fedora SSH Config Adjustments
 Edited
-```bash /etc/ssh/sshd_config
+```bash
+/etc/ssh/sshd_config
 ```
-
+```bash
 PasswordAuthentication no
 PubkeyAuthentication yes
 AuthorizedKeysFile /home/ops-admin/.ssh/authorized_keys
+```
 
 Restarted SSH:
-```bash sudo systemctl restart sshd
+```bash
+sudo systemctl restart sshd
 ```
 
 6. Hardening Fedora
 Verified SELinux mode:
-```bash getenforce
+```bash
+getenforce
 ```
 Temporarily set to permissive:
-```bash sudo setenforce 0
+```bash
+sudo setenforce 0
 ```
 Set correct permissions recursively:
-```bash chown -R ops-admin:ops-admin ~/.ssh
+```bash
+chown -R ops-admin:ops-admin ~/.ssh
 ```
 Synced clock:
-```bash sudo dnf install chrony -y
+```bash
+sudo dnf install chrony -y
 ```
-```bash sudo systemctl enable --now chronyd
+```bash
+sudo systemctl enable --now chronyd
 ```
 
 8. Verified sshd_config
 Confirmed:
+```bash
 PubkeyAuthentication yes
 PasswordAuthentication no
 AuthorizedKeysFile /home/ops-admin/.ssh/authorized_keys
+```
 
 9. Restarted SSH service
 Used:
-```bash sudo systemctl restart sshd
+```bash
+sudo systemctl restart sshd
 ```
 
 11. Test Connection from macOS
-```bash ssh -i ~/.ssh/id_ed25519 ops-admin@192.168.1.8
+```bash
+ssh -i ~/.ssh/id_ed25519 ops-admin@192.168.1.8
 ```
 Success confirmed with direct terminal access to Fedora.
 
 13. Debugging
 Used:
-```bash ssh -vvv ...
+```bash
+ssh -vvv ...
 ```
 Checked logs:
-```bash sudo journalctl -u sshd -f
+```bash
+sudo journalctl -u sshd -f
 ```
 
 
@@ -146,9 +165,11 @@ sudo setenforce 0
 
 - Disabled password authentication in `sshd_config`
 - Set strict file and directory permissions:
-```bash ~/.ssh` = `700
+```bash
+~/.ssh` = `700
 ```
-```bash ~/.ssh/authorized_keys
+```bash
+~/.ssh/authorized_keys
 ``` = `600`
 - Used a secure `ed25519` SSH key pair
 - Manual control of SELinux and time synchronization
