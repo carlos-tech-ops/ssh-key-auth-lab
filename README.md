@@ -161,16 +161,16 @@ sudo journalctl -u sshd -f
 sudo setenforce 0
 ```
     
+This introduces:
+- Unclosed or malformed code blocks.
+- Improper use of inline backticks (`) inside triple backticks (```), which breaks Markdown parsing.
+
 ## Hardening Applied
 
 - Disabled password authentication in `sshd_config`
 - Set strict file and directory permissions:
-```bash
-~/.ssh` = `700
-```
-```bash
-~/.ssh/authorized_keys
-``` = `600`
+  - `~/.ssh` = `700`
+  - `~/.ssh/authorized_keys` = `600`
 - Used a secure `ed25519` SSH key pair
 - Manual control of SELinux and time synchronization
 
