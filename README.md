@@ -51,56 +51,61 @@ Auth Flow Summary:
 ```bash
    ssh-keygen -t ed25519 -C "carlos@mac"
 ```
-        •	Saved in default location: ```bash ~/.ssh/id_ed25519```
-	•	Public key: ~/.ssh/id_ed25519.pub
+Saved in default location: 
+	```bash ~/.ssh/id_ed25519```
+Public key: 
+        ```bash~/.ssh/id_ed25519.pub```
 
 2. Copy Public Key to Fedora (Manually)
-	•	Logged into Fedora via local keyboard.
-	•	Created file:
-nano ~/.ssh/authorized_keys
-        •	Pasted contents of id_ed25519.pub
-	•	Set permissions:
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
+Logged into Fedora via local keyboard.
+Created file:
+```bash nano ~/.ssh/authorized_keys```
+Pasted contents of id_ed25519.pub
+Set permissions:
+```bash chmod 700 ~/.ssh```
+```bash chmod 600 ~/.ssh/authorized_keys```
 
-3. Fedora SSH Config Adjustments
-	•	Edited /etc/ssh/sshd_config:
+4. Fedora SSH Config Adjustments
+Edited
+```bash /etc/ssh/sshd_config```
+
 PasswordAuthentication no
 PubkeyAuthentication yes
 AuthorizedKeysFile /home/ops-admin/.ssh/authorized_keys
-	•	Restarted SSH:
-sudo systemctl restart sshd
 
-4. Hardening Fedora
-	•	Verified SELinux mode:
-getenforce
-        •	Temporarily set to permissive:
-sudo setenforce 0
-	•	Set correct permissions recursively:
-chown -R ops-admin:ops-admin ~/.ssh
-        •	Synced clock:
-sudo dnf install chrony -y
-sudo systemctl enable --now chronyd
+Restarted SSH:
+```bash sudo systemctl restart sshd```
 
-5. Verified sshd_config
-	•	Confirmed:
+6. Hardening Fedora
+Verified SELinux mode:
+```bash getenforce```
+Temporarily set to permissive:
+```bash sudo setenforce 0```
+Set correct permissions recursively:
+```bash chown -R ops-admin:ops-admin ~/.ssh```
+Synced clock:
+```bash sudo dnf install chrony -y```
+```bash sudo systemctl enable --now chronyd```
+
+7. Verified sshd_config
+Confirmed:
 PubkeyAuthentication yes
 PasswordAuthentication no
 AuthorizedKeysFile /home/ops-admin/.ssh/authorized_keys
 
-6. Restarted SSH service
-	•	used:
-sudo systemctl restart sshd
+8. Restarted SSH service
+Used:
+```bash sudo systemctl restart sshd```
 
-7. Test Connection from macOS
-ssh -i ~/.ssh/id_ed25519 ops-admin@192.168.1.8
-        •	Success confirmed with direct terminal access to Fedora.
+9. Test Connection from macOS
+```bash ssh -i ~/.ssh/id_ed25519 ops-admin@192.168.1.8```
+Success confirmed with direct terminal access to Fedora.
 
-8. Debugging
-	•	Used:
-ssh -vvv ...
-        •	Checked logs:
-sudo journalctl -u sshd -f
+10. Debugging
+Used:
+```bash ssh -vvv ...```
+Checked logs:
+```bash sudo journalctl -u sshd -f```
 
 
 ## Errors and Fixes
@@ -125,8 +130,8 @@ sudo setenforce 0
 
 - Disabled password authentication in `sshd_config`
 - Set strict file and directory permissions:
-  - `~/.ssh` = `700`
-  - `~/.ssh/authorized_keys` = `600`
+```bash ~/.ssh` = `700````
+```bash ~/.ssh/authorized_keys``` = `600`
 - Used a secure `ed25519` SSH key pair
 - Manual control of SELinux and time synchronization
 
