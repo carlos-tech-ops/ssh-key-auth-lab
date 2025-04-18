@@ -17,10 +17,10 @@ To configure secure, passwordless SSH access from a MacBook (client) to a Fedora
 
 ## Test Environment
 
-| Role        | Hostname     | IP Address     | OS        | Purpose                     |
-|-------------|--------------|----------------|-----------|-----------------------------|
-| Client      | macOS-M1     | 192.168.1.198  | macOS 14  | Generates SSH key & initiates connection |
-| Server      | fedora-ops   | 192.168.1.8    | Fedora 41 | Accepts SSH connection, hardened |
+| Role   | Hostname | IP Address     | OS                   | Specs                  | Purpose                                |
+|--------|----------|----------------|----------------------|------------------------|----------------------------------------|
+| Client | macOS    | 192.168.1.198  | macOS Sequoia 15.4   | MacBook Air M3, 24GB   | Generates SSH key & initiates connection |
+| Server | fedora-ops | 192.168.1.8  | Fedora 41            | HP ProBook 430 G7      | Accepts SSH connection, hardened       |
 
 > Note: Both devices were on the same local network. Timezone synchronization and SELinux config were handled manually.
 >
