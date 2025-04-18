@@ -122,9 +122,6 @@ sudo journalctl -u sshd -f
     ```
     
 ## Hardening Applied
-After fixing errors, list the hardening tactics:
-```md
-## Hardening Applied
 
 - Disabled password authentication in `sshd_config`
 - Set strict file and directory permissions:
@@ -135,7 +132,7 @@ After fixing errors, list the hardening tactics:
 
 ## Key Commands
 
-```bash
+	•	Bash:
 ssh-keygen -t ed25519 -C "carlos@mac"
 cat ~/.ssh/id_ed25519.pub
 nano ~/.ssh/authorized_keys
