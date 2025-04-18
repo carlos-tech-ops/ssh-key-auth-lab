@@ -117,9 +117,9 @@ sudo journalctl -u sshd -f
 
 - **SELinux blocking login silently:**
   - Resolved by setting SELinux to permissive temporarily:
-    ```bash
-    sudo setenforce 0
-    ```
+```bash
+sudo setenforce 0
+```
     
 ## Hardening Applied
 
@@ -132,7 +132,7 @@ sudo journalctl -u sshd -f
 
 ## Key Commands
 
-	•	Bash:
+```bash
 ssh-keygen -t ed25519 -C "carlos@mac"
 cat ~/.ssh/id_ed25519.pub
 nano ~/.ssh/authorized_keys
@@ -141,6 +141,7 @@ chmod 600 ~/.ssh/authorized_keys
 chown -R ops-admin:ops-admin ~/.ssh
 sudo systemctl restart sshd
 journalctl -u sshd -f
+```
 
 ## Conclusion
 
