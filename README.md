@@ -190,3 +190,4 @@ journalctl -u sshd -f
 ## Conclusion
 
 This was more than just setting up SSH. I broke, debugged, and rebuilt the connection manually—learning the internals of SSH, SELinux, system permissions, and Linux logs. This README documents the real-world experience of a future Cloud Security Engineer in training.
+# Synced from Fedora
